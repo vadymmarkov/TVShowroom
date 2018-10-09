@@ -1,5 +1,5 @@
 //
-//  CaptionButtons.swift
+//  Poster.swift
 //  TVShowroom
 //
 //  Created by Vadym Markov on 09/10/2018.
@@ -37,8 +37,7 @@ struct Poster: Component {
     }
 
     private func makePosterView(title: String, subtitle: String) -> TVPosterView {
-        let posterView = TVPosterView()
-        posterView.image = UIImage(color: .white)
+        let posterView = TVPosterView(image: UIImage(color: .white))
         posterView.title = title
         posterView.subtitle = subtitle
         return posterView

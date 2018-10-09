@@ -18,7 +18,10 @@ final class ComponentsViewController: UITableViewController {
         Cards(),
         CaptionButtons(),
         Monogram(),
-        Poster()
+        Poster(),
+        NavigationBar(),
+        TabBar(),
+        PageControl()
     ]
 
     override func viewDidLoad() {
