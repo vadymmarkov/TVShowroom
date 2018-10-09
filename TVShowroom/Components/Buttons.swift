@@ -14,7 +14,6 @@ struct Buttons: Component {
     func makeViewController() -> UIViewController {
         let viewController = UIViewController()
         let view = viewController.view!
-
         let buttons = [
             UIButton(type: .plain, title: "Read more"),
             UIButton(type: .system, title: "Read more"),
