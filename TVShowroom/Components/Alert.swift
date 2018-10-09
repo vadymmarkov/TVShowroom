@@ -9,7 +9,7 @@
 import UIKit
 
 struct Alert: Component {
-    var title = "Alert"
+    let title = "Alert"
 
     func makeViewController() -> UIViewController {
         let title = "Buy Gone Girl for $14.99"

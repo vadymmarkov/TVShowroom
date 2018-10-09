@@ -9,7 +9,7 @@
 import TVUIKit
 
 struct DigitEntry: Component {
-    var title = "Digit Entry View"
+    let title = "Digit Entry View"
 
     func makeViewController() -> UIViewController {
         let viewController = TVDigitEntryViewController()
