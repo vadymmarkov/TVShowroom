@@ -12,9 +12,10 @@ import UIKit
 final class ComponentsViewController: UITableViewController {
     private let components: [Component] = [
         Alert(),
-        DigitEntry(),
         Buttons(),
-        Collection()
+        Collection(),
+        DigitEntry(),
+        Cards()
     ]
 
     override func viewDidLoad() {
