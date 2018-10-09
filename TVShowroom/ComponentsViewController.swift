@@ -12,7 +12,8 @@ import UIKit
 final class ComponentsViewController: UITableViewController {
     private let components: [Component] = [
         Alert(),
-        DigitEntry()
+        DigitEntry(),
+        Buttons()
     ]
 
     override func viewDidLoad() {
