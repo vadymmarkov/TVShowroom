@@ -21,7 +21,8 @@ final class ComponentsViewController: UITableViewController {
         Poster(),
         NavigationBar(),
         TabBar(),
-        PageControl()
+        PageControl(),
+        ProgressIndicators()
     ]
 
     override func viewDidLoad() {
