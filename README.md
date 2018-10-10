@@ -1,5 +1,3 @@
-# TVShowroom
-
 ![TVShowroom logo](https://raw.githubusercontent.com/vadymmarkov/TVShowroom/master/GitHub/cover.png)
 
 ## Description
