@@ -1,4 +1,4 @@
-![TVShowroom logo](https://raw.githubusercontent.com/vadymmarkov/TVShowroom/master/GitHub/cover.jpg)
+![TVShowroom logo](https://github.com/vadymmarkov/TVShowroom/blob/master/GitHub/cover.jpg?raw=true)
 
 ## Description
 
