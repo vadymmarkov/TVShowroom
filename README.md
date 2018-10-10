@@ -1,5 +1,8 @@
-<p align="center"><img width=100% src="https://raw.githubusercontent.com/vadymmarkov/TVShowroom/blod/master/GitHub/cover.png"></p>
 # TVShowroom
+
+<p align="center"><img width=100% src="https://raw.githubusercontent.com/vadymmarkov/TVShowroom/master/GitHub/cover.png"></p>
+
+## Description
 
 An app that demonstrates standard tvOS interface elements:
 - Alert
