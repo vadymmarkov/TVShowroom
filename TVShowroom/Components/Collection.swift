@@ -21,7 +21,7 @@ struct Collection: Component {
 // MARK: - View Controller
 
 private final class ViewController: UITableViewController {
-    private let rowHeight: CGFloat = 300
+    private let rowHeight: CGFloat = 200
     private let rows = generateRandomData()
     private var storedOffsets = [Int: CGFloat]()
 
@@ -71,11 +71,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 548, height: rowHeight)
+        return CGSize(width: 308, height: rowHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 48
+        return 50
     }
 }
 

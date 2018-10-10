@@ -8,8 +8,14 @@
 
 import UIKit
 
-/// https://developer.apple.com/design/human-interface-guidelines/tvos/interface-elements/digit-entry-views/
+protocol ComponentsViewControllerDelegate: AnyObject {
+    func componentsViewController(_ viewController: ComponentsViewController, didSelectComponent component: Component)
+}
+
 final class ComponentsViewController: UITableViewController {
+    weak var delegate: ComponentsViewControllerDelegate?
+
+    /// https://developer.apple.com/design/human-interface-guidelines/tvos/interface-elements/digit-entry-views/
     private let components: [Component] = [
         Alert(),
         Buttons(),
@@ -19,9 +25,11 @@ final class ComponentsViewController: UITableViewController {
         CaptionButtons(),
         Monogram(),
         Poster(),
-        NavigationBar(),
         TabBar(),
-        PageControl()
+        PageControl(),
+        ProgressIndicators(),
+        SegmentedControl(),
+        Search()
     ]
 
     override func viewDidLoad() {
@@ -40,10 +48,12 @@ final class ComponentsViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        guard context.nextFocusedIndexPath != context.previouslyFocusedIndexPath else { return }
+        guard let indexPath = context.nextFocusedIndexPath else { return }
+
         let component = components[indexPath.row]
-        let viewController = component.makeViewController()
-        present(viewController, animated: true, completion: nil)
+        delegate?.componentsViewController(self, didSelectComponent: component)
     }
 }
 
@@ -54,4 +64,3 @@ private extension UITableViewCell {
         return String(reflecting: self)
     }
 }
-

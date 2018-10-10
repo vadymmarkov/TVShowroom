@@ -12,13 +12,30 @@ import UIKit
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     private var window: UIWindow?
-    private lazy var mainViewController = ComponentsViewController()
+    private lazy var splitViewController = UISplitViewController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = mainViewController
+
+        let componentsViewController = ComponentsViewController()
+        componentsViewController.delegate = self
+
+        splitViewController.title = "Components"
+        splitViewController.viewControllers = [componentsViewController]
+
+        let navigationController = UINavigationController(rootViewController: splitViewController)
+
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true
     }
 }
 
+// MARK: - ComponentsViewControllerDelegate
+
+extension AppDelegate: ComponentsViewControllerDelegate {
+    func componentsViewController(_ viewController: ComponentsViewController, didSelectComponent component: Component) {
+        let viewController = component.makeViewController()
+        splitViewController.showDetailViewController(viewController, sender: self)
+    }
+}

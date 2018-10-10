@@ -1,5 +1,5 @@
 //
-//  Alert.swift
+//  Search.swift
 //  TVShowroom
 //
 //  Created by Vadym Markov on 27/09/2018.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-struct Alert: Component {
-    let title = "Alert"
+struct Search: Component {
+    let title = "Search"
 
     func makeViewController() -> UIViewController {
         return ViewController()
@@ -22,7 +22,7 @@ private final class ViewController: UIViewController {
     private lazy var button: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Buy", for: .normal)
+        button.setTitle("Search", for: .normal)
         button.addTarget(self, action: #selector(handleButtonTap), for: .primaryActionTriggered)
         return button
     }()
@@ -38,19 +38,11 @@ private final class ViewController: UIViewController {
     }
 
     @objc private func handleButtonTap() {
-        let title = "Buy Gone Girl for $14.99"
-        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let searchController = UISearchController(searchResultsController: UIViewController())
+        searchController.searchBar.placeholder = NSLocalizedString("Enter keyword", comment: "")
 
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            alertController.dismiss(animated: true, completion: nil)
-            print("The \"OK\" button pressed.")
-        }))
-
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            alertController.dismiss(animated: true, completion: nil)
-            print("The \"Cancel\" button pressed.")
-        }))
-
-        present(alertController, animated: true, completion: nil)
+        let searchContainer = UISearchContainerViewController(searchController: searchController)
+        let searchNavigationController = UINavigationController(rootViewController: searchContainer)
+        present(searchNavigationController, animated: true, completion: nil)
     }
 }
