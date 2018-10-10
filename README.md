@@ -1,5 +1,4 @@
-<p align="center"><img width=100% src="https://raw.githubusercontent.com/vadymmarkov/TVShowroom/master/cover.png"></p>
-
+<p align="center"><img width=100% src="https://raw.githubusercontent.com/vadymmarkov/TVShowroom/blod/master/GitHub/cover.png"></p>
 # TVShowroom
 
 An app that demonstrates standard tvOS interface elements:
