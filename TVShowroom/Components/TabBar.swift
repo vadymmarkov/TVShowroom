@@ -12,6 +12,32 @@ struct TabBar: Component {
     let title = "Tab Bar"
 
     func makeViewController() -> UIViewController {
+        return ViewController()
+    }
+}
+
+// MARK: - Private
+
+private final class ViewController: UIViewController {
+    private lazy var button: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Show", for: .normal)
+        button.addTarget(self, action: #selector(handleButtonTap), for: .primaryActionTriggered)
+        return button
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(button)
+
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
+    }
+
+    @objc private func handleButtonTap() {
         let viewControllers = [
             UIViewController(tabTitle: "Featured"),
             UIViewController(tabTitle: "Top Charts"),
@@ -22,11 +48,10 @@ struct TabBar: Component {
 
         let tabBarController = UITabBarController()
         tabBarController.setViewControllers(viewControllers, animated: false)
-        return tabBarController
+
+        present(tabBarController, animated: true, completion: nil)
     }
 }
-
-// MARK: - Private
 
 private extension UIViewController {
     convenience init(tabTitle: String) {
