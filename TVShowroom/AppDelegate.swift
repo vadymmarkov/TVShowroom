@@ -36,6 +36,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: ComponentsViewControllerDelegate {
     func componentsViewController(_ viewController: ComponentsViewController, didSelectComponent component: Component) {
         let viewController = component.makeViewController()
-        splitViewController.showDetailViewController(viewController, sender: self)
+        splitViewController.present(viewController, animated: true, completion: nil)
     }
 }

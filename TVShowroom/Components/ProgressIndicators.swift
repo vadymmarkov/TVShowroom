@@ -21,14 +21,22 @@ struct ProgressIndicators: Component {
         let progressView = UIProgressView()
         progressView.progress = 0.6
 
-        let stackView = UIStackView(arrangedSubviews: [activityIndicatorView, progressView])
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = 4
+        pageControl.currentPage = 2
+
+        let segmentedControl = UISegmentedControl(items: ["Featured", "Top Charts"])
+
+
+
+        let stackView = UIStackView(arrangedSubviews: [activityIndicatorView, progressView, pageControl, segmentedControl])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         stackView.spacing = 50
         view.addSubview(stackView)
 
         NSLayoutConstraint.activate([
-            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2),
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])

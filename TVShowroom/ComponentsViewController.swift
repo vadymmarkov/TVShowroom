@@ -34,8 +34,40 @@ final class ComponentsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+
+
+
         tableView.remembersLastFocusedIndexPath = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
+    }
+
+    //let button = UIButton()
+
+    /// UIFocusEnvironment: an array of focus environments, ordered by priority
+//    override var preferredFocusEnvironments: [UIFocusEnvironment] {
+//        return [button]
+//    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+//        // The view that is currently focused (optional)
+//        let focusedView = UIScreen.main.focusedView
+//
+//        // The item that is currently focused (for the view controller, optional)
+//        let focusedItem = UIFocusSystem(for: view)?.focusedItem
+//
+//        // UIFocusEnvironment: marks this environment as needing a focus update
+//        setNeedsFocusUpdate()
+//
+//        // UIFocusEnvironment: forces focus to be updated immediately
+//        updateFocusIfNeeded()
+//
+//
+//        print(focusedView)
+//        print(focusedItem)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,6 +85,10 @@ final class ComponentsViewController: UITableViewController {
         guard context.nextFocusedIndexPath != context.previouslyFocusedIndexPath else { return }
         guard let indexPath = context.nextFocusedIndexPath else { return }
 
+
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let component = components[indexPath.row]
         delegate?.componentsViewController(self, didSelectComponent: component)
     }

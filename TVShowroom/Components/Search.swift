@@ -38,11 +38,19 @@ private final class ViewController: UIViewController {
     }
 
     @objc private func handleButtonTap() {
-        let searchController = UISearchController(searchResultsController: UIViewController())
-        searchController.searchBar.placeholder = NSLocalizedString("Enter keyword", comment: "")
 
-        let searchContainer = UISearchContainerViewController(searchController: searchController)
-        let searchNavigationController = UINavigationController(rootViewController: searchContainer)
+
+
+        let searchController = UISearchController(searchResultsController: UIViewController())
+        searchController.searchBar.placeholder = "Enter keyword"
+
+        let searchContainer = UISearchContainerViewController(
+            searchController: searchController
+        )
+        let searchNavigationController = UINavigationController(
+            rootViewController: searchContainer
+        )
+
         present(searchNavigationController, animated: true, completion: nil)
     }
 }

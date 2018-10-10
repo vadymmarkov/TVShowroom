@@ -57,6 +57,28 @@ private final class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext,
+                                 with coordinator: UIFocusAnimationCoordinator) {
+
+        // Displays a focused appearance when any
+        // of its superviews become focused
+        let imageView = UIImageView()
+        imageView.adjustsImageWhenAncestorFocused = true
+
+        // Scrolls its text while any of its superviews become focused
+        let label = UILabel()
+        label.enablesMarqueeWhenAncestorFocused = true
+
+        // Outputs a diagnosis of the specified item's focusability
+        print(UIFocusDebugger.checkFocusability(for: view))
+        // - ISSUE: This item returns NO from -canBecomeFocused.
+
+
+
+        super.didUpdateFocus(in: context, with: coordinator)
+
+    }
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -121,18 +143,68 @@ final class TableViewCell: UITableViewCell {
 final class CollectionViewCell: UICollectionViewCell {
     static let focusScale: CGFloat = 1.1
 
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+    /// Allow the view to receive focus
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    let buttonA = UIButton()
+    let buttonB = UIButton()
+
+    func setup() {
+
+
+        /// UIView.swift
+
+        // buttonA -> buttonB
+        let focusGuide = UIFocusGuide()
+        addLayoutGuide(focusGuide)
+
+        // Indicate where to transfer focus
+        focusGuide.preferredFocusEnvironments = [buttonB]
+
+        NSLayoutConstraint.activate([
+            // Configure size to match origin view
+            focusGuide.widthAnchor.constraint(equalTo: buttonA.widthAnchor),
+            focusGuide.heightAnchor.constraint(equalTo: buttonA.heightAnchor),
+
+            // Attach at the bottom of the origin view
+            focusGuide.topAnchor.constraint(equalTo: buttonA.bottomAnchor),
+            focusGuide.leadingAnchor.constraint(equalTo: buttonA.leadingAnchor)
+        ])
+
+
+        // Configure size to match origin view
+
+
+        // Attach at the bottom of the origin view
+
+
+
+    }
+
+    /// Update the visual appearance of the view
+    override func didUpdateFocus(in context: UIFocusUpdateContext,
+                                 with coordinator: UIFocusAnimationCoordinator) {
         if context.nextFocusedView == self {
             coordinator.addCoordinatedAnimations({
-                let focusScale = CollectionViewCell.focusScale
-                self.transform = CGAffineTransform(scaleX: focusScale, y: focusScale)
+                // Make sure focus animations match the system timing
+                UIView.animate(withDuration: UIView.inheritedAnimationDuration) {
+                    let focusScale: CGFloat = 1.1
+                    self.transform = CGAffineTransform(scaleX: focusScale, y: focusScale)
+                }
             }, completion: nil)
         } else if context.previouslyFocusedView == self {
-            coordinator.addCoordinatedAnimations({ () -> Void in
-                self.transform = .identity
+            coordinator.addCoordinatedAnimations({
+                UIView.animate(withDuration: UIView.inheritedAnimationDuration) {
+                    self.transform = .identity
+                }
             }, completion: nil)
         }
     }
+
+
+
 }
 
 // MARK: - Private extensions

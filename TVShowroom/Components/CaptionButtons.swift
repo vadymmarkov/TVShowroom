@@ -15,8 +15,10 @@ struct CaptionButtons: Component {
         let viewController = UIViewController()
         let view = viewController.view!
 
+
+
+
         let buttonView = TVCaptionButtonView()
-        buttonView.translatesAutoresizingMaskIntoConstraints = false
         buttonView.motionDirection = .horizontal
         buttonView.contentText = "Caption Button"
         buttonView.title = "Button Title"

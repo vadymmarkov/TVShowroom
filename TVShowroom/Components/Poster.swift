@@ -37,10 +37,20 @@ struct Poster: Component {
     }
 
     private func makePosterView(title: String, subtitle: String) -> TVPosterView {
-        let posterView = TVPosterView(image: UIImage(color: .white))
-        posterView.title = title
-        posterView.subtitle = subtitle
-        return posterView
+
+
+        let posterViewA = TVPosterView(image: UIImage(color: .white))
+        posterViewA.title = "Vadym Markov"
+        posterViewA.subtitle = "iOS Developer"
+
+        let posterViewB = TVPosterView(image: UIImage(color: .white))
+        posterViewB.title = "Eva Dufey"
+        posterViewB.subtitle = "UI/UX Designer"
+
+        let stackView = UIStackView(arrangedSubviews: [posterViewA, posterViewB])
+
+
+        return posterViewA
     }
 }
 

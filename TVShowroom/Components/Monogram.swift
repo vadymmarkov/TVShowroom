@@ -15,13 +15,15 @@ struct Monogram: Component {
         let viewController = UIViewController()
         let view = viewController.view!
 
+
+
         let monogramView = TVMonogramView()
-        monogramView.translatesAutoresizingMaskIntoConstraints = false
         monogramView.personNameComponents = PersonNameComponents()
         monogramView.personNameComponents?.givenName = "Vadym"
         monogramView.personNameComponents?.familyName = "Markov"
         monogramView.title = "Vadym Markov"
         monogramView.subtitle = "iOS Developer"
+
 
         view.addSubview(monogramView)
 

@@ -38,29 +38,26 @@ struct Cards: Component {
     }
 
     private func makeCardView() -> TVCardView {
-        let cardView = TVCardView()
-        cardView.cardBackgroundColor = .darkGray
-        cardView.translatesAutoresizingMaskIntoConstraints = false
+
+
 
         let headerView = TVLockupHeaderFooterView()
         headerView.showsOnlyWhenAncestorFocused = true
-        headerView.titleLabel?.text = "Header title"
-        headerView.subtitleLabel?.text = "Header subtitle"
-
-        let footerView = TVLockupHeaderFooterView()
-        footerView.showsOnlyWhenAncestorFocused = true
-        footerView.titleLabel?.text = "Footer title"
-        footerView.subtitleLabel?.text = "Footer subtitle"
+        headerView.titleLabel?.text = "Title"
+        headerView.subtitleLabel?.text = "Subtitle"
 
         let label = UILabel()
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.enablesMarqueeWhenAncestorFocused = true
-        label.text = "A card combines a header, footer and content view"
+        label.text = "Content"
+
+        let cardView = TVCardView()
+        cardView.cardBackgroundColor = .gray
+        cardView.translatesAutoresizingMaskIntoConstraints = false
 
         cardView.contentView.addSubview(label)
         cardView.headerView = headerView
-        cardView.footerView = footerView
+        cardView.footerView = nil // optionally, set the footer
+
 
         NSLayoutConstraint.activate([
             label.widthAnchor.constraint(equalTo: cardView.contentView.widthAnchor, multiplier: 0.8),

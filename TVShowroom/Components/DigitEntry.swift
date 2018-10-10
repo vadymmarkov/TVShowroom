@@ -12,6 +12,8 @@ struct DigitEntry: Component {
     let title = "Digit Entry View"
 
     func makeViewController() -> UIViewController {
+
+
         let viewController = TVDigitEntryViewController()
         viewController.titleText = "Enter passcode"
         viewController.promptText = "Enter your five-digit passcode"
@@ -23,5 +25,7 @@ struct DigitEntry: Component {
         }
 
         return viewController
+
+
     }
 }
