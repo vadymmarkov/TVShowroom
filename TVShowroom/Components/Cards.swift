@@ -39,7 +39,7 @@ struct Cards: Component {
 
     private func makeCardView() -> TVCardView {
         let cardView = TVCardView()
-        cardView.cardBackgroundColor = .darkGray
+        cardView.cardBackgroundColor = .gray
         cardView.translatesAutoresizingMaskIntoConstraints = false
 
         let headerView = TVLockupHeaderFooterView()
