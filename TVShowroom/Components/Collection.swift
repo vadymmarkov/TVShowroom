@@ -99,6 +99,23 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 50
     }
+
+    /// The index path of the cell that should be focused
+    func collectionView(_ collectionView: UICollectionView,
+                        canFocusItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    /// Whether a change in focus should occur
+    func collectionView(_ collectionView: UICollectionView,
+                        shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
+        context.nextFocusedIndexPath != IndexPath(item: 2, section: 0)
+    }
+
+    /// Whether the item at the specified index path can be focused
+    func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+        return IndexPath(item: 1, section: 0)
+    }
 }
 
 // MARK: - Cells
@@ -143,10 +160,7 @@ final class TableViewCell: UITableViewCell {
 final class CollectionViewCell: UICollectionViewCell {
     static let focusScale: CGFloat = 1.1
 
-    /// Allow the view to receive focus
-    override var canBecomeFocused: Bool {
-        return true
-    }
+
 
     let buttonA = UIButton()
     let buttonB = UIButton()
@@ -154,24 +168,7 @@ final class CollectionViewCell: UICollectionViewCell {
     func setup() {
 
 
-        /// UIView.swift
-
-        // buttonA -> buttonB
-        let focusGuide = UIFocusGuide()
-        addLayoutGuide(focusGuide)
-
-        // Indicate where to transfer focus
-        focusGuide.preferredFocusEnvironments = [buttonB]
-
-        NSLayoutConstraint.activate([
-            // Configure size to match origin view
-            focusGuide.widthAnchor.constraint(equalTo: buttonA.widthAnchor),
-            focusGuide.heightAnchor.constraint(equalTo: buttonA.heightAnchor),
-
-            // Attach at the bottom of the origin view
-            focusGuide.topAnchor.constraint(equalTo: buttonA.bottomAnchor),
-            focusGuide.leadingAnchor.constraint(equalTo: buttonA.leadingAnchor)
-        ])
+        
 
 
         // Configure size to match origin view
@@ -183,25 +180,7 @@ final class CollectionViewCell: UICollectionViewCell {
 
     }
 
-    /// Update the visual appearance of the view
-    override func didUpdateFocus(in context: UIFocusUpdateContext,
-                                 with coordinator: UIFocusAnimationCoordinator) {
-        if context.nextFocusedView == self {
-            coordinator.addCoordinatedAnimations({
-                // Make sure focus animations match the system timing
-                UIView.animate(withDuration: UIView.inheritedAnimationDuration) {
-                    let focusScale: CGFloat = 1.1
-                    self.transform = CGAffineTransform(scaleX: focusScale, y: focusScale)
-                }
-            }, completion: nil)
-        } else if context.previouslyFocusedView == self {
-            coordinator.addCoordinatedAnimations({
-                UIView.animate(withDuration: UIView.inheritedAnimationDuration) {
-                    self.transform = .identity
-                }
-            }, completion: nil)
-        }
-    }
+    
 
 
 

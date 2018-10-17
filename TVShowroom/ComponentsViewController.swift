@@ -43,27 +43,20 @@ final class ComponentsViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
     }
 
-    //let button = UIButton()
+    let button = UIButton()
 
-    /// UIFocusEnvironment: an array of focus environments, ordered by priority
-//    override var preferredFocusEnvironments: [UIFocusEnvironment] {
-//        return [button]
-//    }
+    dsds
+
+
+
+    
+
+
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        // The view that is currently focused (optional)
-//        let focusedView = UIScreen.main.focusedView
-//
-//        // The item that is currently focused (for the view controller, optional)
-//        let focusedItem = UIFocusSystem(for: view)?.focusedItem
-//
-//        // UIFocusEnvironment: marks this environment as needing a focus update
-//        setNeedsFocusUpdate()
-//
-//        // UIFocusEnvironment: forces focus to be updated immediately
-//        updateFocusIfNeeded()
+
 //
 //
 //        print(focusedView)
